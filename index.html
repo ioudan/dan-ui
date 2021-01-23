@@ -6,8 +6,13 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
     <title>Dan UI</title>
     <style>
-        *{padding: 0;margin: 0;box-sizing: border-box;}
-        :root{
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: white;
@@ -18,15 +23,17 @@
             --border-color-hover: #666;
 
         }
-        #app{
+
+        #app {
             margin: 20px;
         }
-        body{
+
+        body {
             font-size: var(--font-size);
         }
     </style>
     <style>
-        .d-button{
+        .d-button {
             font-size: var(--font-size);
             height: var(--button-height);
             padding: 0 1em;
@@ -34,13 +41,16 @@
             border: 1px solid var(--border-color);
             background: var(--button-bg);
         }
-        .d-button:hover{
+
+        .d-button:hover {
             border-color: var(--border-color-hover);
         }
-        .d-button:active{
+
+        .d-button:active {
             background-color: var(--button-active-bg);
         }
-        .b-button:focus{
+
+        .b-button:focus {
             outline: none;
         }
     </style>
@@ -54,9 +64,9 @@
 <script src="./button.js"></script>
 <script>
     new Vue({
-        el:"#app",
-        data:{
-            message:'hi'
+        el: "#app",
+        data: {
+            message: 'hi'
         }
     })
 </script>

@@ -1,11 +1,24 @@
 <template>
-  <button class="d-button">按钮</button>
+  <button class="d-button">
+    <slot v-if="iconPosition ==='right' "></slot>
+    <svg v-if="icon" class="icon">
+      <use :xlink:href="`#i-${icon}`"></use>
+    </svg>
+    <slot v-if="!icon || iconPosition ==='left' "></slot>
+  </button>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['icon', 'iconPosition']
+}
 </script>
-
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+}
+</style>
 <style lang="scss">
 .d-button {
   font-size: var(--font-size);

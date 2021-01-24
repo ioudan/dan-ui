@@ -1,8 +1,6 @@
 <template>
   <button class="d-button" :class="{[`icon-${iconPosition}`]:true}">
-    <svg v-if="icon" class="icon">
-      <use :xlink:href="`#i-${icon}`"></use>
-    </svg>
+    <d-icon v-if="icon" :name="icon"></d-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -23,12 +21,7 @@ export default {
   }
 }
 </script>
-<style>
-.icon {
-  width: 1em;
-  height: 1em;
-}
-</style>
+
 <style lang="scss">
 .d-button {
   font-size: var(--font-size);

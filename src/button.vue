@@ -1,6 +1,7 @@
 <template>
   <button class="d-button" :class="{[`icon-${iconPosition}`]:true}">
     <d-icon v-if="icon" :name="icon"></d-icon>
+    <d-icon class="loading" name="loading"></d-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -23,6 +24,14 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 .d-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -66,6 +75,9 @@ export default {
     .content {
       order: 1;
     }
+  }
+  .loading{
+    animation: spin 1s infinite linear;
   }
 
 

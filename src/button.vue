@@ -1,7 +1,7 @@
 <template>
-  <button class="d-button" :class="{[`icon-${iconPosition}`]:true}">
-    <d-icon v-if="icon" :name="icon"></d-icon>
-    <d-icon class="loading" name="loading"></d-icon>
+  <button :class="{[`icon-${iconPosition}`]:true,'d-button':true}" @click="$emit('click2')">
+    <d-icon v-if="!loading && icon" :name="icon"></d-icon>
+    <d-icon v-if="loading" class="loading" name="loading"></d-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -12,6 +12,10 @@
 export default {
   props: {
     icon: {},
+    loading:{
+      type:Boolean,
+      default: false,
+    },
     iconPosition: {
       type: String,
       default: 'left',
@@ -79,8 +83,6 @@ export default {
   .loading{
     animation: spin 1s infinite linear;
   }
-
-
 }
 
 

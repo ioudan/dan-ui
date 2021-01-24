@@ -6,7 +6,13 @@
 
 <script lang="ts">
 export default {
-  name: 'button-group'
+  mounted() {
+    for (let node of this.$el.children) {
+      if (node.nodeName.toLowerCase() !== 'button') {
+        console.warn(`g-button-group 的子元素应该都是 g-button，不应该包含 ${node.nodeName}`);
+      }
+    }
+  }
 };
 </script>
 
@@ -17,7 +23,10 @@ export default {
 
   > .d-button {
     border-radius: 0;
-    margin-left: -1px;
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
 
     &:first-child {
       border-top-left-radius: var(--border-radius);

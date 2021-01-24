@@ -11,7 +11,16 @@
 
 <script>
 export default {
-  props: ['icon', 'iconPosition']
+  props: {
+    icon: {},
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator(value) {
+        return ['left', 'right'].indexOf(value) >= 0
+      }
+    }
+  }
 }
 </script>
 <style>
@@ -30,8 +39,9 @@ export default {
   background: var(--button-bg);
   vertical-align: middle;
   display: inline-flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     border-color: var(--border-color-hover);
   }
@@ -44,21 +54,23 @@ export default {
     outline: none;
   }
 
-  > .icon{
+  > .icon {
     order: 1;
     margin-right: .3em;
   }
-  > .content{
+
+  > .content {
     order: 2;
   }
 
-  &.icon-right{
-    .icon{
+  &.icon-right {
+    .icon {
       order: 2;
       margin-right: 0;
       margin-left: .3em;
     }
-    .content{
+
+    .content {
       order: 1;
     }
   }

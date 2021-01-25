@@ -1,5 +1,5 @@
 <template>
-  <button :class="{[`icon-${iconPosition}`]:true,'d-button':true}" @click="$emit('click2')">
+  <button :class="{[`icon-${iconPosition}`]:true,'d-button':true}" @click="$emit('click')">
     <d-icon v-if="!loading && icon" :name="icon"></d-icon>
     <d-icon v-if="loading" class="loading" name="loading"></d-icon>
     <div class="content">
@@ -9,11 +9,16 @@
 </template>
 
 <script>
+import Icon from './icon'
+
 export default {
+  components: {
+    'd-icon': Icon
+  },
   props: {
     icon: {},
-    loading:{
-      type:Boolean,
+    loading: {
+      type: Boolean,
       default: false,
     },
     iconPosition: {
@@ -29,13 +34,14 @@ export default {
 
 <style lang="scss">
 @keyframes spin {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
+
 .d-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -80,7 +86,8 @@ export default {
       order: 1;
     }
   }
-  .loading{
+
+  .loading {
     animation: spin 1s infinite linear;
   }
 }

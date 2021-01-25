@@ -62,16 +62,31 @@ describe('Input', () => {
         afterEach(() => {
             vm.$destroy()
         })
-        it('支持 change/input/focus/blur 事件',()=>{
-            ['change','input','focus','blur'].forEach((eventName)=>{
+        it('支持 change/input/focus/blur 事件', () => {
+            ['change', 'input', 'focus', 'blur'].forEach((eventName) => {
+                // 构造一个Input组件
                 vm = new Constructor({}).$mount()
+                // 伪造一个回调函数
                 const callback = sinon.fake() // 调用西蒙 伪造 一个回调函数
+                // 监听组件的各种事件，当事件触发时，执行回调函数
                 vm.$on(eventName, callback)
+                // 获取组件内的input对象
                 const element = vm.$el.querySelector('input')
+                // 构造一个Event事件
                 const event = new Event(eventName);
-                element.dispatchEvent(event);
-                // 期待回调函数被调用，且传了event参数
-                expect(callback).to.have.been.calledWith(event)
+
+                // javascript中模拟input事件时，设置target属性
+                // event是一个只读属性，没法event.target来设置，只能如下
+                Object.defineProperty(
+                    event, 'target',
+                    {value: 'hi', enumerable: true});
+
+                // input对象调用这个事件
+                //      由于每个事件都绑定一个$emit('xxx',$event.target.value)
+                //      会将触发事件的对象的value值，传给被触发的组件的xxx函数
+                    element.dispatchEvent(event);
+                // 期待回调函数被调用时，传的参数是event
+                expect(callback).to.have.been.calledWith(event.target.value)
             })
         })
 

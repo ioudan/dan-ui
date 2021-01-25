@@ -41,6 +41,11 @@
 <body>
 <div id="app">
     <div class="box">
+        <d-input v-model="message"></d-input>
+        <p>{{message}}</p>
+        <button @click="message+=1">+1</button>
+    </div>
+    <div class="box">
         <d-input value="张三"></d-input>
         <d-input value="李四" disabled></d-input>
         <d-input value="王五" readonly></d-input>

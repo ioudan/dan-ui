@@ -70,8 +70,8 @@ describe('Input', () => {
                 const callback = sinon.fake() // 调用西蒙 伪造 一个回调函数
                 // 监听组件的各种事件，当事件触发时，执行回调函数
                 vm.$on(eventName, callback)
-                // 获取组件内的input对象
-                const element = vm.$el.querySelector('input')
+
+
                 // 构造一个Event事件
                 const event = new Event(eventName);
 
@@ -79,14 +79,18 @@ describe('Input', () => {
                 // event是一个只读属性，没法event.target来设置，只能如下
                 Object.defineProperty(
                     event, 'target',
-                    {value: 'hi', enumerable: true});
+                    {value: {value: 'hi'}, enumerable: true});
+
+                // 获取组件内的input对象
+                let inputElement = vm.$el.querySelector('input')
 
                 // input对象调用这个事件
                 //      由于每个事件都绑定一个$emit('xxx',$event.target.value)
                 //      会将触发事件的对象的value值，传给被触发的组件的xxx函数
-                    element.dispatchEvent(event);
+                inputElement.dispatchEvent(event);
+
                 // 期待回调函数被调用时，传的参数是event
-                expect(callback).to.have.been.calledWith(event.target.value)
+                expect(callback).to.have.been.calledWith('hi')
             })
         })
 

@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "npx parcel index.html --no-cache",
-    "dev-test": "parcel watch test/* --no-cache & karma start",
+    "dev-test1": "npx parcel watch test/* --no-cache",
+    "dev-test2": "npx karma start",
     "test": "parcel build test/* --no-minify && karma start --single-run"
   },
   "repository": "git+https://github.com/ioudan/dan-ui.git",
